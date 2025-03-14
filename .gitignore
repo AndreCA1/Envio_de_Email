@@ -29,5 +29,6 @@ hs_err_pid*
 nohup.out
 
 # Ignorar credenciais sensíveis
+.env
 .env.local
 .env.*.local
