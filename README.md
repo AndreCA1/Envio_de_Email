@@ -23,15 +23,17 @@ SMTP_PASS=sua-senha-de-app
 🔹 Gere uma senha e use-a no `SMTP_PASS`.  
 
 ### 3️⃣ Execute a Aplicação
+
+Execute em alguma IDE ou com o Maven
 ```bash
 mvn spring-boot:run
 ```
-
 Agora a API estará rodando em `http://localhost:8080/api/emails`.
 
 ### 4️⃣ Teste o Envio de E-mail
 
-
+Depois abra o arquivo index.hmtl localizado em "Envio_de_Email\src\main\resources\static\index.html" 
+E tente enviar um E-mail
 
 ## 🔧 Configuração Automática de Variáveis
 Este projeto carrega automaticamente as credenciais SMTP do Gmail do arquivo **`.env`**, graças à configuração no `application.properties`:
