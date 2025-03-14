@@ -1,0 +1,58 @@
+    <!DOCTYPE html>
+    <html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <title>Envio de E-mail</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                max-width: 400px;
+                margin: 50px auto;
+                text-align: center;
+            }
+            input, textarea, button {
+                width: 100%;
+                margin: 5px 0;
+                padding: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Enviar E-mail</h2>
+        <form id="emailForm">
+            <input type="email" id="para" placeholder="Destinatário (email)" required>
+            <input type="text" id="assunto" placeholder="Assunto" required>
+            <textarea id="mensagem" placeholder="Mensagem" required></textarea>
+            <button type="submit">Enviar</button>
+        </form>
+
+        <p id="resultado"></p>
+
+        <script>
+            document.getElementById("emailForm").addEventListener("submit", function(event) {
+                event.preventDefault(); // Evita recarregar a página
+
+                const emailData = {
+                    destinatario: document.getElementById("para").value,
+                    assunto: document.getElementById("assunto").value,
+                    texto: document.getElementById("mensagem").value
+                };
+
+                fetch("http://localhost:8080/api/emails", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(emailData)
+                })
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("resultado").innerText = data;
+                })
+                .catch(error => {
+                    document.getElementById("resultado").innerText = error;
+                });
+            });
+        </script>
+    </body>
+    </html>
